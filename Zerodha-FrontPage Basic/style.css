@@ -1,0 +1,74 @@
+@import url("https://fonts.googleapis.com/css2?family=Bona+Nova:ital@1&family=Inter:wght@400;600;700&family=Macondo&family=Poppins&family=Tilt+Neon&display=swap");
+
+body {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-size: 16px;
+  font-weight: 400;
+}
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  box-shadow: 0 1px 2px #dcdcdc;
+}
+.navbar img {
+  width: 270px;
+  padding: 50px;
+  margin-left: 200px;
+  margin-right: 100px;
+}
+
+ul{
+  margin-right: 200px;
+  list-style: none;
+  font-size: 22px;
+  font-weight: 400;
+  display: flex;
+  gap: 55px;
+  padding: 22px 25px;
+  color: #423d3dd0;
+  cursor: pointer;
+}
+.main-image{
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  height: 600px;
+}
+.content{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+.content h1{
+  padding-top: 10px;
+  font-size: 60px;
+  font-weight: 500;
+  color: rgb(29, 24, 24);
+}
+
+.content h4{
+  font-size: 35px;
+  font-weight: 300;
+  margin-top: -15px;
+}
+button {
+  width: 250px;
+  height: 60px;
+  background-color: #3872d1;
+  color: #fff;
+  border: 1px solid rgba(0,0,0,0);
+  border-radius: 3px;
+  padding: 10px 30px;
+  font-weight: 400;
+  cursor: pointer;
+  font-size: 30px;
+  margin-top: 20px;
+}
+button:hover{
+  background-color: black;
+  color: #fff;
+}
