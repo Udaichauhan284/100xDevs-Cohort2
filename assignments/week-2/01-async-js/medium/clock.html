@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clock in Both Format</title>
+  <style>
+    body{
+      margin: 0;
+      padding: 0;
+      background-color: black;
+      color: aquamarine;
+    }
+    .container{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+      margin: 100px;
+      text-align: center;
+      gap: 80px;
+    }
+    h4{
+      font-size: 40px;
+      font-weight: 500;
+    }
+    h2{
+      font-size: 50px;
+      font-weight: 700;
+    }
+    .clock-box{
+      margin-right: 80px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+  <div class="clock-box">
+    <h4>12 Hour Format</h4>
+    <h2 id="12format">00:00:00</h2>
+  </div>
+    <div class="clock-box-for-24">
+      <h4>24 Hour Format</h4>
+      <h2 id="24format">00:00:00</h2>
+  </div>
+</div>
+<script>
+  function updatingTime(){
+    const clock12 = document.getElementById("12format");
+    const clock24 = document.getElementById("24format");
+
+    let date = new Date();
+
+    let time12 = date.toLocaleTimeString('en-us', {hour:"numeric", minute:"numeric", second:"numeric", hour12: true});
+    let time24 = date.toLocaleTimeString('en-us', {hour:"2-digit", minute:"2-digit", second:"2-digit", hour12: false});
+
+    clock12.textContent = time12;
+    clock24.textContent = time24;
+
+    setTimeout(updatingTime, 1000);
+  }
+  updatingTime();
+</script>
+</body>
+</html>
