@@ -4,18 +4,47 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Week 4 | Frontend</title>
+  <style>
+    body{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #container{
+      background: wheat;
+      border: 2px solid black;
+      padding: 30px;
+      border-radius: 10px;
+    }
+    input{
+      border: none;
+      outline: none;
+      margin-bottom: 10px;
+      width: 150px;
+      padding: 10px;
+      border-radius: 10px;
+    }
+    button{
+      cursor: pointer;
+      margin-left: 55px;
+      margin-bottom: 10px;
+    }
+  </style>
 </head>
 <body>
+  <div id="container">
   <input type="text" placeholder="Enter Number" id="num1"> <br/>
   <input type="text" placeholder="Enter Number" id="num2"> <br/>
   <button onclick="calculateSum()">Click</button>
   <div id="finalSum"></div>
+</div>
   <script>
-    function calculateSum(){
+    async function calculateSum(){
       let number1 = document.getElementById("num1").value;
       let number2 = document.getElementById("num2").value;
-      let add = +number1 + +number2
-      document.getElementById('finalSum').textContent = add;
+      let response = await fetch(`http://localhost:3030/sum?num1=${number1}&num2=${number2}`);
+      let result = await response.text();
+      document.getElementById("finalSum").innerText = `The Sum is ${result}`
     }
   </script>
 </body>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Week 4 | Interset</title>
+  <style>
+    body{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #container{
+      background: wheat;
+      border: 2px solid black;
+      padding: 30px;
+      border-radius: 10px;
+      width : 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+    input{
+      border: none;
+      outline: none;
+      margin-bottom: 10px;
+      width: 150px;
+      padding: 10px;
+      border-radius: 10px;
+    }
+    button{
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+  <input type="text" placeholder="Enter Principal" id="principal"> <br/>
+  <input type="text" placeholder="Enter Time" id="time"> <br/>
+  <input type="text" placeholder="Enter Rate" id="rate"> <br/>
+  <button onclick="calculate()">Click</button>
+  <div id="finalSum"></div>
+</div>
+  <script>
+    async function calculate(){
+      let principal = document.getElementById("principal").value;
+      let time = document.getElementById("time").value;
+      let rate = document.getElementById("rate").value;
+      let response = await fetch(`http://localhost:3030/interset?principal=${principal}&time=${time}&rate=${rate}`);
+      let result = await response.json();
+      document.getElementById("finalSum").innerText = `The Total ${result.total} and Interset ${result.interset}`
+    }
+  </script>
+</body>
+</html>
