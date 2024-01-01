@@ -39,6 +39,14 @@
   <div id="finalSum"></div>
 </div>
   <script>
+    let setTime;
+    function delayedCalculateFunc(){  //this is known as debouncing
+      clearTimeout(setTime);
+      setTime = setTimeout(() => {
+        calculateSum()
+      },100);
+    }
+    
     async function calculateSum(){
       let number1 = document.getElementById("num1").value;
       let number2 = document.getElementById("num2").value;
