@@ -1,6 +1,10 @@
-# React + Vite
+# React + Vite - TODO App
+This project contains a simple - TODO Application. It has the following features -
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+- Anyone can create a TODO
+- Anyone can see their existing todo
+- Anyone can mark a todo as done.
+
 
 Currently, two official plugins are available:
 
