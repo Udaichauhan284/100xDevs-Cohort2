@@ -1,0 +1,49 @@
+## React Returns
+In react, component can only return a signle root element, commonly wrapped in a parent container (like a div). This rule exists because React needs a single entry points to render and manage the component's output.
+
+-- One of the most prominent reasons for its is "Reconciliation". The single-root element rule in react facilitates the "reconciliation" process. where React efficiently updates the real DOM based on changes in the virtual DOM. By having a single root element, React can easily perform the comparison between the previous an dcurrent states of the virtual DOM.
+
+# In summary, the single-root rule ensures a clear and efficient rendering process, simplifies styling and layout and maintains consistency in react components.
+
+## Object Destructuring
+OD is a featue in JS that allows you to extract values form objects and assign them to variables in a more concise and convenient way. This can male your code clearer and more readable.
+
+# Basic Object Destructuring:
+- Default Values:
+You can also provide default values in case the property is not present in the objects
+
+- Variable Assignemnt:
+You can use a different variable names during destructuring:
+
+- Nested Object Destructuring:
+Destructuring also works with nested objects.
+
+# When Does a Rerender Happen ?
+1.CHnages in a state variable utilized within the components.
+2. A re-render of a parent component, which subsequently riggers the re-rendering of all its child components. This cascading effect ensures sysnchronization throughtout the component tree.
+
+## There are 2 ways of minimizing the amount of re-renderes.
+1. Push the State down
+2. By Using Memoization.
+
+# Push the State Down
+in react referes to the pratice of managing state at the lowest possible level in the components tree. By oding so, you localize the state to the components that absolutely need it, reducing unnecessary re-render in higher-level components.
+
+# By Using Memoization
+"memo" lets you skip re-rendering a compoenet when its props are unchanged.
+The above problem of reducing the number of rendering can also be tackled using Memoization. Memoization in React, achieved through the useMemo hook, is a technique used to optimize performance by memoizing(caching) the results of expensice calculations. This is particular useful when dealing with computations that dont need to be recalculated on every render. preventing unnecessary recalculatioons and re-renders.
+
+
+## Significance of Key in React
+in React, when rendering a list of elements using the map function it is crucial to assogn a unique key prop to each elements. The "key" is a special attribute that helps React identify which item have changed, been added or been removed, This is essential for efficient updates and preventing unnecessary re-renders of the entire list.
+
+-- When the "key" prop is not provided or not unique within the list, React can't efficiently track the changes, leading to potential issues in the application's performance and rendering.
+
+## React Hooks
+React Hooks are functions that allow functional components in react to have state and lifecycle features that were previously avaiable only in class components. 
+
+-- Using these Hooks, developers can manage state, handle side effects, optimize performance and create more reusable and readable functional components in React applications. Each hook servers a specific purpose, contributing to a more modular and maintainable codebase.
+
+## useEffect()
+
+useEffect is a React Hook used for performing side effects in functional components. It is often used for task such as data fetching, subscriptions, or manually changing the DOM. The useEffect hook accepts two arguments a function that contains the code to excute, and an optional array of dependecies that determines when the effect should run.
