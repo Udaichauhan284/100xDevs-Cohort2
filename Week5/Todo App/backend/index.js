@@ -1,10 +1,13 @@
 const express = require('express');
 const app = express();
 const {createTodo, updateTodo} = require("./types");
+const { todo } = require('./db');
+const cors = require("cors");
 
 app.use(express.json());
+app.use(cors());
 
-app.post("/todo", (req,res)=>{
+app.post("/todo", async (req,res)=>{
   const createPlayload = req.body;
   const parsedPayload = createTodo.safeParse(createPlayload);
   if(!parsedPayload.success){
@@ -13,13 +16,27 @@ app.post("/todo", (req,res)=>{
     })
     return;
   }
+  //put it in mongoDB
+  await todo.create({
+    title : createPlayload.title,
+    description : createPlayload.description,
+    completed : false
+  })
+  res.json({
+    msg : "Todo Is Created"
+  })
 });
 
-app.get("/todo", (req,res)=> {
-
+app.get("/todos", async (req,res)=> {
+  //get it from db
+  const todos = await todo.find({});
+  //conosle.log(todos); //promise, so need to await
+  res.json({
+    todos
+  })
 });
 
-app.put("/completed",(req,res)=>{
+app.put("/completed", async (req,res)=>{
   const updatePlayLoad = req.body;
   const createPayload = updateTodo.safeParse(updatePlayLoad);
   if(!updatePlayLoad.success){
@@ -28,8 +45,17 @@ app.put("/completed",(req,res)=>{
     })
     return;
   }
+  await todo.update({
+    _id : req.body.id,
+  }, {
+    completed : true
+  })
+  res.json({
+    msg : "todo marked is completed"
+  })
 });
 
-app.listen(()=> {
-  console.log("Server chl rha bahut tej");
+app.listen((err)=>{
+  if(err) console.log("Error in server running");
+  console.log("Server Chl rhe bahut tezz");
 }, 3030);
