@@ -227,3 +227,112 @@
 // }
 // export default App;
 
+//using of useMemo for Assignment showwing only even id todos
+// import { useState, useCallback } from "react";
+// import {memo} from 'react';
+// import "./App.css";
+
+// function App(){
+//   const [todos, setTodos] = useState([{
+//     id: 1,
+//     title : "Go yo gym",
+//     description: "go to gym from 6-7"
+//   }, {
+//     id: 2,
+//     title: "buy groceries",
+//     description : "buy veggies and kitchen stuff from 7-8"
+//   }, {
+//     id: 3,
+//     title : "Make dinner",
+//     description: "come home at 8:30 and prepare dinner"
+//   }]);
+//   const [count, setCount] = useState(0);
+
+//   function incrementCount(){
+//     setCount((count)=> count + 1);
+//   }
+//   const filteredTodos = todos.filter(todo => todo.id % 2 === 0);
+
+//   return (
+//     <>
+//       <button onClick={incrementCount}>Count + {count}</button>
+//       {filteredTodos.map(todo => <Todo title={todo.title} description={todo.description} /> )}
+//     </>
+//   )
+// }
+// const Todo = memo(function ({titile, description}){
+//   return <>
+//     <div>
+//       <h2>{titile}</h2>
+//       <h3>{description}</h3>
+//     </div>
+//   </>
+// });
+// export default App;
+
+//useRef code mutiple example
+
+// import { useState, useEffect, useRef } from "react";
+// import "./App.css";
+// function App(){
+//   const [inputValue, setInputValue] = useState("");
+//   const count = useRef(0);
+
+//   useEffect(()=>{
+//     count.current = count.current+1;
+//   });
+
+//   return (
+//     <>
+//     <input 
+//       type="text"
+//       value={inputValue}
+//       onChange={(e)=> setInputValue(e.target.value)}
+//     />
+//     <h1>Render Count : {count.current}</h1>
+//     </>
+//   )
+// }
+// export default App;
+
+//Accessing DOM elements
+
+// import { useRef } from "react";
+// import "./App.css";
+// function App(){
+//   const inputElement = useRef();
+
+//   const focusOnInput = () => {
+//     inputElement.current.focus();
+//   }
+
+//   return (
+//     <>
+//       <input type="text" ref={inputElement}/>
+//       <button onClick={focusOnInput}>Focus Button</button>
+//     </>
+//   )
+// }
+// export default App;
+
+// Tracking State Changes
+import { useState, useEffect, useRef } from "react";
+import "./App.css";
+function App(){
+  const [inputValue, setInputValue] = useState("");
+  const previousInputValue = useRef("");
+
+  useEffect(() => {
+    previousInputValue.current = inputValue
+  },[inputValue]);
+
+  return (
+    <>
+      <input type="text" value={inputValue} onChange={(e) => setInputValue(e.target.value)}/>
+
+      <h2>Cuurent Value : {inputValue}</h2>
+      <h2>Previous Value : {previousInputValue.current}</h2>
+    </>
+  )
+}
+export default App;
