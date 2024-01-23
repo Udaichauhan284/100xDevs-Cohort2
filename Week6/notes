@@ -47,3 +47,30 @@ React Hooks are functions that allow functional components in react to have stat
 ## useEffect()
 
 useEffect is a React Hook used for performing side effects in functional components. It is often used for task such as data fetching, subscriptions, or manually changing the DOM. The useEffect hook accepts two arguments a function that contains the code to excute, and an optional array of dependecies that determines when the effect should run.
+
+## Hooks - useCallback
+useCallback is used to memorize a callback function. This is useful when you have a function that you pass down to child components and you dont want to re-create the function on every rendor, which could lead to unnecessary re-renders of the child components.
+One reason to use "useCallback" is to prevent a component from re-rendering unless its props have changed.
+
+## useMemo
+useMemo is used to memorize value. This is useful when you have a computataionally expensive calculation tha you dont want to re-run on every render unless specific dependencies change.
+
+## useRef
+The useRef Hook allow you to persist values between renders.
+It can be used to store a mutable value that does not cause a re-render when updated.
+It can be used to access a DOM element directly.
+
+-- Does not Cuase re-renders
+If we tired to count how many times our application renders using the "useState" Hook, we would be caught in an infinite loop since this Hook itself causes a re-render.
+To avoid this, we can use he "useRef" Hook.
+
+useRef() only returns one item. It returns an Object called Current.
+
+-- Accessing DOM elements
+in general, we want React to let handle all DOM manipulation.
+But there are some instances where useRef can be used without causing issues.
+In react, we can add a "ref" attribute to an element to access it directly in the DOM.
+
+-- Tracking State Changes
+The useRef Hook can also be used to keep track of previous state values.
+This is because we are able to persist useRef values between renders.
