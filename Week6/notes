@@ -74,3 +74,42 @@ In react, we can add a "ref" attribute to an element to access it directly in th
 -- Tracking State Changes
 The useRef Hook can also be used to keep track of previous state values.
 This is because we are able to persist useRef values between renders.
+
+----------------------------------------
+## Week 6.2 
+----------------------------------------
+## Side Effects in React
+in the context of React, "side effects" refer to operations or behaviour that occur outside the scope of the typical component rendering process. There can include data fetching, subscriptions, manual DOM manipulations and other actions that have an impact beyond rendering the user interface.
+
+Thus, "side effect" are the operations outside the usual rendering process, and "hooks" like useEffect, are mechanism provided by React to handle these side effects in functional components. The useEffect hook allows you to incorporate side effects into your components in a clean and organized manner.
+
+-- useState()
+it is react hook that enables functional components to manage state. It returns an array with 2 elements the current state value and a function to update that value.
+
+## Difference between useEffect, useMemo and useCallback
+
+1. useEffect:
+- Purpose : Manages side effects in function components.
+- Triggers: Runs after rendering and on subsequent re-renders.
+- Use Cases: fetching data, subscriptions, manually changing the DOM, etc.
+
+2. useMemo:
+- Purpose: memoizes the result of a computation to avoid unncessary recalculations.
+- Triggers: runs during rendering
+- use cases: memoizing expensive calculatioons, preventing unnecessary re-render.
+
+3. useCallback:
+- purpose: memoizes a callback function to prevent unnecessary re-renders of child components.
+- triggers: runs during rendering
+- use cases: preventing unnecessary re-renders when passing callbacks to child components.
+
+----------------------------------
+## Week 6.3
+----------------------------------
+## React Reconciliation
+It is the process through which react updates the Browser DOM. it makes the DOM updates faster in React. It updates the virtual DOM first and then uses the diffing algo to make efficient and optimized updates in the REAL DOM.
+
+The term "rendering" in react can closely be identified as making or becoming.
+in traditional rendering, the broswer does the following task:
+1.create a DOM represented by a tree structure.
+2. renders any new data to the DOM even if data is similar to previous ones.
