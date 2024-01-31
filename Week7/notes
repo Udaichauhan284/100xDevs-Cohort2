@@ -1,0 +1,103 @@
+Week 7.1 | Context API and Prop Drilling
+"Routing" is vital for managing navigation in React applications, while "prop drilling" and the "Context API" address challenges related to passing data between components.
+
+## React Routing
+Routing in React is a mechanism that allows you to manage navigation and control the content displayed in your application based on the URL. It's essential for several reasons:
+1. Multi-Page Applications.
+2. User Experience
+3. Bookmarking and sharing
+4. Code Organization.
+5. State Preservation
+6. Conditional Rendering
+
+## Some Jargons
+1. Single Page Application (SPA):
+A single Page Application is a type of web application or website that interacts with the user by dynamically rewriting the current page, rather than loading entire new pages from the sever.
+
+2. Client-Site Bundle:
+In the context of web developement, a client-side bundle refers to a collection of JS files and other assests bundled together to be delivered to the client's web browser.
+-- Advantages:
+Reduces the number of HTTP requests, improving loading times.
+Enables code splitting and lazy loading for optimizing performance.
+Simplifies deployment and maintenance by organizing code into manageable bundles.
+
+3. Client-side Routing
+Client-side routing refers to the process of managing navigation within a Single Page Application (SPA) entirely on the client side, wuthout making-additional requests to the server for each new view.
+-- Key Features:
+- Utilizes the browser's History API to manipulate the URL without triggering full page reloads.
+- Enables dynamic content updates based on the route, improving user experience.
+- Typically implemented using libraries like React Router for React applications or Vue Router for Vue js applications.
+
+-- Advnatages:
+- Enhances the performance of SPAs by avoiding the need for server round-tips during navigation.
+- Allow for a smoother and more responsive user interface as content is updates dynamically.
+- Enables bookmarking, sharing and direct linking to specific views within the SPA.
+
+## Lazy Loading
+LL in React is a technique used to optimize the performance of a web application by deferring the loading of certain components until they are actually needed, This can significantly reduce the initial bundle size and improve the overall laoding time of the applications.
+
+LL is achieved using React.lazy function along with the Suspense component. The "React.lazy" function allows you to load a component lazily, meaning it is only fetched when the component is actually rendered. 
+
+## Prop Drilling in React
+Prop drilling refers to the process of passing data from a top-level component down to deeper levels through intermediate components. It happens when a piece of data needs to be accessible by a component deep in the component tree, and it gets passed down as a prop through all the intermediate components.
+
+## Context API in React
+Context API is a feature in React that provides a way to share like props between components withouy explicitly passing them thorugh each level of the component tree. It helps solve the prop drilling problem by allowing data to be accessed by components at any level without the need to pass it throught intermeduatee components.
+
+----------------------------
+## Week 7.2
+----------------------------
+
+## State Management
+State Management refers to the process of handling and maintaining the state or data of an application throughout its lifecycle. In Frontend development, state typically represents the current condition or values of variables in an application. Effective state management is crucial for building dynamic and interactive user interfaces.
+
+In react and other frontend frameworks, there are various methods to manage state:
+1. Local Component state:
+- each component in react can have its own local state managed using the "useState" hook.
+- Local state is confined to the component it belongs to and is primarily used for managing component-specific data.
+
+2. Context API:
+- react provides the context API to manage global state that needs to be accessed bu multiple components.
+- it allows the sharing of state across the component tree without having to pass props manually through each level.
+
+3. State Management libraries (e.g Redux, recoil)
+- Specialized state management libraries offer advanced features for handliing complex global state in large applications.
+- These libraries often introduce concepts like actions, reducers and a centralized store for maintaining state.
+
+4. Recoil:
+- Recoil is a state mangement library developed by Facebook specifically for React applications.
+- It intoduces the concept of atoms and selectors, providing a more flexible and scalable approach to managing and sharing state.
+
+## Problem with Context API
+COntext API in React is a powerful tool for solving the prop drillin ptoblem by allowing the passing of data hrough the component tree w/o the need for explicit props at every level.
+However, it does not inherently address the re-rendering issue.
+
+When using the Context API, updates to the context can trigger re-renders of all components that consume that context, even if the specific data they need hasn't changes. This can potentially lead to unnecessary re-render and impact the performance of the application.
+
+## Recoil
+It developed by Facebook, is a state management library for React applications. it introduces a more sophisticated approach to handling state, offering features like atoms, selectors and a global state tree. With Recoil, we can overcome some of the challenges associated with prop drilling and achieve a more scalabe and organized state management solution. 
+
+## Concepts in Recoil
+1. RecoilRoot
+it is a component provided by Recoil that serves as the root of the recoil state tree. It must be placed at the top level of your react component tree to enable the use of Recoil atoms and selectors throughout your application.
+
+2. atom
+it is a unit of state. it represent a piece of state that can be read from and written to by various components in your React application. Atoms act as shared pieces of state that can be used across different parts of your component tree.
+
+## Recoil Hooks
+The hooks "useRecoilState", "useRecoilValue", and "useSetRecoilState" are provided to interact with atoms and selectors.
+
+1. useRecoilState:
+- this hook returns a tuple comtaining the current value of the recoil state and a function to set its new value.
+
+2. useRecoilValue:
+this hook retrieves and subscribes to the current value of a recoil state.
+
+3. useSetRecoilState:
+- this hook returns a function that allows you to sey the value of a recoil state without subscribing to updates.
+
+These hooks provide a convenient wa to work with recoil states in functional components. useRecoilState is used when you need both the current value and a settter function,
+useRecoilValue when you only need the the current value, and useSetRecoilState when you want to set the state without subscribing to updates. They contribute to making Recoil-based state management more ergonomic and straightforward.
+
+## Selectors
+They are functions that derive new pieces of state from existing ones. They allow you to compute derived state based on the values of atoms or other selectors. Selectors are an essential part of managing complex state logic in a Recoil application.
