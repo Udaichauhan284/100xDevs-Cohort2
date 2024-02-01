@@ -37,3 +37,27 @@ The fetch() method returns a Promise, making it easy to work with asynchronous o
 
 4. flexibable and powerful
 fetch() is more flexible and powerful compared to older methods like XMLHTTPRequest. It supports a wide range of options, including headers, request methods, and handling different types of responses(JSON,text,etc).
+
+## fetch() vs axios()
+-Fetch API
+1. Native Browser API:
+fetch is a native JS function built into modern browsers for making HTTP requests.
+
+2. Promise-Based:
+it returns a Promise, allowing for a more modern asynchronous coding style with async/await or using .then().
+
+3. Lightweight:
+fetch is lightweight and comes bundled with browsers, reducing the need for external dependencies.
+
+- Axios
+1. External Library:
+Axios is a standalone JS library designed to work in both browsers and Node js env.
+
+2. Promise-Based
+Similar to fetch, axios also return a Promise, providing a consistent interface for handling asynchronous operations.
+
+3. Http Request and response interceptors:
+Axios allows the use of interceptors, enabling the modification of request or responses globally before they are handled by then or catch.
+
+4. Automatic JSON Parsing:
+Axios automatically parses JSON responses, simplifying the process compared to fetch.
