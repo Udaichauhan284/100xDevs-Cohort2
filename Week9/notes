@@ -1,0 +1,22 @@
+## WEEK 9
+-- WEEK 9.1 
+- Lifecycle Events
+In react represent various phases a component goes through from its birth to its removal from the DOM. These events are associated with class components and provide developers with the ability to excute code at specific points during a component's existence.
+
+The key lifecycle events in a class-bases React Component are:
+1.componentDidMount: this method is called after a component has been rendered to the DOM. It is commonly used to perform initial setup, data fetching or subscriptions.
+
+2.componentDidUpdate: this method is invoked immediately after an update occurs. It's useful for reacting to prop or state changes and performing additional actions.
+
+3.componentWillUnmount: this mehtod is called just before a component is removed from the DOM. it's suitable for cleanup tasks, such as removing event listerners or canceling subscriptions.
+
+Functional components also gained lifecycle-like behaviour thriugh the useEffect Hook. The equivalent hooks are:
+1.useEffect with an empty dependency array. Equivalent to componentDidMount. Runs after the initial render.
+
+2.useEffect with dependencies: Equivalent to componentDidUpdate. Runs whenever the specified dependencies changes.
+
+3.useEffect with a cleanup function: equivalent to componenentWillUnmount. Runs before the component is unmounted.
+
+## Custom Hooks
+- What ?
+Custom Hooks in React are user-defined functions that encapsulate reusable logic and stateful behaviour. they allow developers to etract and share common functionality across multiple components, promoting code-reusability and maintaining cleaner and more modular code.
