@@ -20,3 +20,30 @@ Functional components also gained lifecycle-like behaviour thriugh the useEffect
 ## Custom Hooks
 - What ?
 Custom Hooks in React are user-defined functions that encapsulate reusable logic and stateful behaviour. they allow developers to etract and share common functionality across multiple components, promoting code-reusability and maintaining cleaner and more modular code.
+
+-----------------------------------------
+## Week 9.2
+-----------------------------------------
+## Introduction to Typescript
+-- Types of Languages
+1. Loosely Typed Languages
+a. Runtime Type Association: Data types are associated with values at runtime. Unlike strongly types languages, type information is not strictly bound during compilation but rather at the time of execution.
+
+b. Dynamic Type Changes: Variables can change types during execution, offering more adaptability. This flexibility allows for a dynamic approach to variable assignments and operations.
+
+c. Runtime Error Discovery: type errors may be discovered during runtime, potentially leading to unexpected behavious. This characteristic provides more freedom but requires careful handling.
+
+2. Strongly Typed Langugaes
+a. Compile-Time enviornment: the data type of a variable is striclty enforced during compilation. This means that the compiler checks and ensures that avriables are used in a way that is consistent with their types at compile time.
+
+b. Type Safety: The complier or interpreter guarantees that operations are performed only on compatible types. This ensures that type-related errors are caught early in the developement process.
+
+c. Early Error detection: type errors are identified and addressed at compile-time, providing early feedback to developers. This leads to increased reliability and reduces the likelihood of runtime erros.
+
+## Why Typescript
+JS is a powerful and widely used programming langugae but it has a dynamic typing system, which means varibale types are determined at runtime. While dynamic typing provides flexibility, it can lead to runtime errors that are challening to catch during developement.
+
+## what typescript
+In response to these challenges, Microsoft introdcued TS, a superset of JS that adds static typing to the language. TS is designed to address some of the limitations of JS by providing developers with a more robust type system.
+
+TS code is transformed into JS through the TS compiler (tsc). This compilation process ensures that TS's features are compatible with existing JS enivorements, enabling developers to benefit from static typing during development while still producing standard JS for exceution.
