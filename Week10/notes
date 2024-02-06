@@ -1,0 +1,64 @@
+## Week 10
+-- Week 10.1
+## Types of Databases
+1. NOSQL Databases
+a. store data in a schema-less fasion. Extremely lean and fast way to store data.
+example: MongoDB.
+
+2. Graph Databases
+a. Data is stored in the fomr of a graph. Specially useful in cases where relationships need to be stored (social networks) Example: Neo4j
+
+3. Vector Databases
+Stores data in the form of vectors. useful in ML, examples: Pinecone
+
+4. SQL Databases
+Stores data in form on rows, most full stack applications will use this, Examples: MySQL, Postgres.
+
+## Why SQL?
+SQL databases have a strict schema. They require you to :-
+1. Define your schema.
+2. Put in data that follows that schema
+3. Update the schema as your app changes and perform migrations.
+
+So there are 4 parts when using an SQL database(not connecting it to Node.js, just running it and putting data in it)
+1. Running the database.
+2. Using library that let's you connect and put data in it.
+3. Creating a table and defining it's schema.
+4. Run queries on the database to interact with the data(insert/udate/delete).
+
+## using a library that let's you connect and put data in it.
+1. psql: it is terminal-based frontend to PostgreSQL. it provides an interactive command-line interface to the PostgreSQL (or TimescaleDB) databases. with psql, you can type in queries interactively, issue them to PostgreSQL, and see the query results.
+
+2. pg: it is a Node.js library that you can use in your backend app to store data in the Postgres DB (similar to Monogoose). we will be installing this eventually in our app.
+
+-- SQL (Structure query language). it is a language in which you can describe what/how you want to pull data in the databases.
+
+- to create a table, the command to run is --
+CREATE TABLE users (
+  id SERIAL PRIMARY KEY,
+  username VARCHAR(50) UNIQUE NOT NULL,
+  email VARCHAR(255) NOT NULL,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+
+- SERIAL PRIMARY KEY:
+A postgreSQL-specific data type for creating an auto-incrementing integer. Every time a new row is inserted, this value automatically increments, ensuring each user has a unique id.
+
+- created_at: the name of the fifth column, intended tot store the timestamp when the user was created.
+- TIMESTAMP WITH TIME ZONE: this data type stores both a timestamp and a time zone, allowing for the precise tracking of when an event occured, regardless of the user's or server's time zone.
+- DEFAULT CURRENT_TIMESTAMP: this default value automatically sets the created_at column to the date and time at which the row is inserted into he table, using the current timestamp of the database server.
+
+## Interacting with the database
+1. Insert
+INSERT INTO users(username, password, email) VALUE ('username', 'user_paswword', 'username_email');
+
+2. UPDATE
+UPDATE users SET password = "new_password" WHERE email = "user@email.com"
+
+3. DELETE
+DELETE users WHERE id = 1;
+
+4.SELECT
+SELECT * FROM users WHERE id = 1;
+
+-- There is 3 file index.ts, insertData.ts and getUser.ts for basic example of how to connet postgres DB with nodejs env using pg lib, and how to create, insert and get users from DB
