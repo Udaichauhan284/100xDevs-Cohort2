@@ -14,22 +14,32 @@ const config_1 = require("./config");
 const client = new pg_1.Client({
     connectionString: config_1.DB_LINK
 });
-function insertData(usernmae, email, password) {
+function insertUserAndAddress(username, email, password, city, country, street, pincode) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             yield client.connect();
-            const insertQuery = "INSERT INTO users (username, email, password) VALUES ($1, $2, $3)";
-            const values = [usernmae, email, password];
-            const res = yield client.query(insertQuery, values);
-            console.log("Insertion success ", res);
+            yield client.query("BEGIN");
+            //insert user
+            const insertUserText = `
+    INSERT INTO users (username, email, password) VALUES ($1, $2, $3) RETURNING id`;
+            const userRes = yield client.query(insertUserText, [username, email, password]);
+            const userId = userRes.rows[0].id;
+            //insert address
+            const insertAddressText = `
+      INSERT INTO addresses (user_id, city, country, street, pincode) VALUES ($1, $2, $3, $4, $5);
+    `;
+            yield client.query(insertAddressText, [userId, city, country, street, pincode]);
+            yield client.query('COMMIT');
+            console.log("User and address inserted successfully");
         }
         catch (err) {
-            console.log("Error during insertion: ", err);
+            yield client.query('ROLLBACK');
+            console.error("Error during transaction, rollback ", err);
+            throw err;
         }
         finally {
-            yield client.end(); //close the client connection
+            yield client.end();
         }
     });
 }
-//example usage
-insertData('udai', 'udai@email.com', 'user_password').catch(console.error);
+insertUserAndAddress('John Doe', 'John@example.com', "securepassword", "New York", "USA", "123 Brooklen", "12001");
