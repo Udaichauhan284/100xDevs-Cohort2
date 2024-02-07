@@ -129,3 +129,79 @@ SELECT users.username, addresses.city, addresses.country, addresses.street, addr
 
 4. FULL JOIN
 Return rows when there is a match in one of the tavles. if effectively combines the results of both LEFT JOIN and RIGHT JOIN.
+
+-------------------------------------------
+## Week 10.2
+-------------------------------------------
+## What are ORMs
+Object Relational Mapping, a programming technique used in software development to convert data between incompatible type systems in object-oriented programming languages. This technique creates a "virtual object databases" that can be used from within the programming language.
+
+ORMs are used to abstract the complexities of the underlying database into simpler, more easily managed objects within the code.
+
+-- Simple one
+ORM let you easily interact with your databases without worrying too much about the underlying syntax.
+
+## Why ORMs ?
+1. simpler syntax (converts objects to SQL queries under the hood)
+2. Abstraction that lets you flip the database you are using. Unified API irrespective of the DB.
+3. Type safety/auto coompletion
+4. Automatic migrations: in case of a simple Postgres app, it's very hard to keep track of all the commands that were ran that led to the current schema of the table.
+
+## What is Prisma
+- Prisma unlocks a new level of developer experience when working with databases thanks to its intuituve data model, automated migrations, type-safety and auto completion
+1. Data Model
+In a single file, define your schema. What it look like, what tables you have, what field each table has, how are rows related to each other.
+
+2. Automated Migrations
+Prisma generates and runs database migrations based on changes to the Prisma schema.
+
+3. Type Safety
+Prisma generates a type-safe database client based on the Prisma schema.
+
+4. Auto-Completion
+
+## Generating the prsima client
+-- Client represents all the functions that convert
+User.create({email : "udai@email.com"})
+
+into 
+
+INSERT INTO users VALUES ....
+
+once you are created the prisma/schema.prisma, you can generate these clients that you can use in your Node.js
+
+-- How to generate the client?
+npx prisma generate
+
+## Relationships
+Prisma lets you define relationships to relate yables with other.
+1. Type of relationships
+a. One to One
+b. One to many
+c. Many to One
+d. Many to Many
+
+2. for the Todo App, there is a one to many relationship
+
+3. Updating the prisma schema
+model User {
+  id  Int @id @default(autoincrement())
+  username String
+  password String
+  firstName String
+  lastName String
+  todos Todo[] //this is main thing this is how we show relationship
+}
+
+model Todo {
+  id Int @id @default(autoincrement())
+  title String
+  descrtiption String
+  done Boolean @deafult(false)
+  userId Int
+  user User @relation(fields: [userId], references: [id])
+}
+
+4. update the database and the prsima client
+npx prisma migrate dev --name relationship
+npx prisma generate

@@ -1,5 +1,5 @@
 import { Client } from "pg";
-import { DB_LINK } from "./config";
+import { DB_LINK } from "./config"
 
 const client = new Client({
   connectionString: DB_LINK
