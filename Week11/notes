@@ -1,0 +1,17 @@
+## Week 11 | Serverless Backends
+-- What are backends Servers?
+You might have used express to create a Backend server.
+The way to run it usually is "node index.js" which starts a process on a certain port (3000 for example)
+
+When you have to deploy it on the internet, there are a few ways-
+1. Go to AWS, GCP, Azure, Cloudfare
+a. rent a Virtual machine and deloy your app,
+b. put it in an auto scaling group
+c. deploy it in a Kubernetes cluster,
+
+There are a few downsides to during this -
+1. taking care of how/when to scale
+2. base cost even if no one is visting your website
+3. monitoring various servers to make sure no server is down.
+
+## What are serverless Backends
