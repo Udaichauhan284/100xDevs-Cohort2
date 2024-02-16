@@ -15,3 +15,42 @@ There are a few downsides to during this -
 3. monitoring various servers to make sure no server is down.
 
 ## What are serverless Backends
+"Serverless" is a backend deployment in which the "cloud provider" dynamically manages the allocation and provisioning of servers. The term "serverless" doesn't mean there are no servers involved. Instead, it means that developers and operators do not have to worry about the servers.
+
+-- What if you could just write your "express routes" and run a command. The app would automatically.
+1. Deploy
+2. Autoscale
+3. Change you on a "per request" basis (rather than you paying for VMs)
+
+-- Problems:
+1. more expensive at scale.
+2. cold start problem.
+
+-- Famous Serverless providers
+there are many famous backend serverless providers -
+1. AWS lambda
+2. Google CLoud Functions
+3. Cloudflare Workers
+
+-- When should you use a serverless architecture?
+a. when you have to get off the ground fast and dont want to worry about deployements.
+b. When you cant anticipate the traffic and dont want to worry about autoscalling.
+c. If you have very low traffic and want to optimize the cost.
+
+-- How cloudflare workers work?
+- Cloudflare workers DONT use the nodejs runtime. They have created thier own runtime.
+
+- How Workers Works
+Though Cloudfare Workers Behave similarlt to JS in the browser or in NodeJS, there are a few difference in how yohave to think about your code. Under the hood, the Workers runtime uses the "V8 engine" - the same engine used by Chromium and NOdejs. The workers runtimw also implements many of the standard API available in most modern browsers.
+
+The difference between JS writtem for the browser or NOdejs happen at runtime. Rather than running on an individual's machine. Wrokers function run on Cloudfare Edge Network - a growing global network of thousands of machines distributed accross hundreds of locations.
+
+Each of these machines hosts and instances of the workers runtime, and each of these runtimes is capable of running thousands of user-defines application.
+
+-- Isolates vs Containers
+- Isolates
+V8 orchestrates isolates: lightweight contexts that provide your code wit variables it can access and a safe enivroment to be executed within. You could even consider an isolate a sandbox for your function to run in.
+
+A single runtime can run hundreds or thousands of isolates, seamlessly switching between them. Each isolates memory is completely isolated. so each piece of code is protected from other untrusted or user written code on the runtime. 
+Isolate are designed to start very quickly.
+Instead of creating a virtual machine of each function, an isolate is created within an existing enivronment. This model eliminates the cold starts of the virtual machine model.
