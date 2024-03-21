@@ -1,0 +1,59 @@
+## Week 12 
+--> 12.1 Deploying Frontend on AWS.
+lets take a example - you are creating youtube like app, so views, users, and related to data will store in database. but you will never store objects like videos, music in database, for this we need AWS - S3 (simple storage service).
+
+step 1. signup and get an AWS account.
+step 2. male sure you can access S3 and cloudfront (this will automatically happen if you are the root user of that account).
+
+--> Step 2. Build you React Frontend
+following approach will work only for HTML/JS/CSS apps
+- Go to your react project
+- Build Your Project
+- Try serving the HTML/CSS/JS locally
+npm i -g serve
+serve
+
+--> Step 3 - What are CDNs ?
+A CDN stands for "Content Delivery Network".
+As the name suggests, it's an optimla way for you to deliver content (mp4 files, jpgs, and even HTML/CSS/JS files) to your users.
+It is better than serving it from a VM/FC2 instances.
+
+1. for frontends, mp4 files, images, Object stores + CDNs are a better approach.
+2. we cant use the same for backends, since every request returns a differenct resposne. Catching doesn't make any sense.
+
+Good video- How Hotstar application scaled
+https://youtu.be/9b7HNzBB3OQ
+
+--> Step 4. Creating an object store in AWS,
+In AWS, S3 is thier object store offering.
+We can create a bucket in there, A bucket represent a logical place where you store all the files of a certain projects.
+
+--> Step 5 Upload the file bundle to S3
+Upload all the files in the dist folder of your react project to S3.
+
+--> Step 6 Try accessing the website
+for now dont open S3 bucket at this poiny.
+Your S3 bucket should be blocked by defualt, and you should allow cloudfront (CDN) to access it.
+
+--> Step 7. Connecting CLoudfront
+1. Create a Cloudfront Distribution
+Go to distribution and create a new distribution. A distribution here measn you are creating a place from where content can be distributed.
+
+2. select your S3 bucket as the source.
+## Origin Access Control (OAC) is a feature in Cloudfront, which allows you to restrict direct access to the content stored in you origin, such as an Amazon S3 bucket or a web server, ensuring that users can only access the content through the CDN distribution and not by directly accessing the origin URL.
+
+--> Step 8 - Connect your own domain to it.
+Website aren't fun if you have to go to a URL that looks like this -
+https://dibs5cabw92oe.cloudfront.net
+
+Connect your own custom domain by following the given steps --
+a. Select edit on the root page
+b. Attach a domain name to the distribution.
+c. Since we want our website to be hosted on HTTPs, we should request a certificate for our domain.
+d. follow given steps to create the certificate in the certificate manager.
+e. Add a CNAME record for the website to point to your cloudfront URL.
+
+--> Step 9 - Error pages
+there a problem to notice, whenever you try to access a route on your page that isn't the index route (/user/1), you reach to an error page.
+
+This is beacuse cloudfront is looking for a file /user/1 in your S3, which dosen;t exist. To make sure that all requests reach index.html or error request to error page.

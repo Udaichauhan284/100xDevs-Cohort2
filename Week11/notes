@@ -54,3 +54,94 @@ V8 orchestrates isolates: lightweight contexts that provide your code wit variab
 A single runtime can run hundreds or thousands of isolates, seamlessly switching between them. Each isolates memory is completely isolated. so each piece of code is protected from other untrusted or user written code on the runtime. 
 Isolate are designed to start very quickly.
 Instead of creating a virtual machine of each function, an isolate is created within an existing enivronment. This model eliminates the cold starts of the virtual machine model.
+
+### AWS Development, starting on 21 Mar
+Ques. What is AWS
+Amazon's Cloud Service.
+It let's you
+1.Rent Servers
+2.Manage domains
+3.Upload objects(mp4 files, jpgs, mp3..)
+4.Autoscale servers
+5.Create k8s clusters.
+
+# -> EC2 Servers
+VM-(Virtual Machines) on AWS are called EC2 servers.
+- EC2 stands for Elastic compute Version 2.
+1. Elastic - can increase/decrease the size of the machine.
+2. Compute = It's a machine.
+you can spin up a new EC2 instance from the aws dashboard.
+
+SSH - Secure Shell
+
+Step 4. SSH into server
+1. Give ssh key permissions
+chmod 700 kirat-class.pem
+
+2. ssh into machine
+ssh -i kirat-class.pem ubuntu@ec2-65-0180-32.op-south-1.compute.amazonaws.com
+
+3. clone repo
+git clone https://github.com/hkirat/sum-server
+
+4. install Node js
+https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-20-04
+Option 3. -- Second command line.
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
+
+
+5. Install all dependencies.
+cd sum-server
+npm install
+
+6. start backend
+node index.js
+
+Step 5 - Install the repo
+clone the repo
+https://github.com/hkirat/sum-server
+
+Step 6 - Try hitting the server
+
+Step 7 - nginx - Reverse Proxy
+## Learn about NGINX - youtube.
+nginx is open source software for web serving, reverse proxying, caching, load balancing, media streaming, an more it started out as web server designes for maximum performance and stability, in addition to its HTTP server capabilities, NGINX can also function as a prozy server for email (MAP,POP3 and SMTP), and a reverse proxy and load balance for HTTP, TCP and UDP servers.
+
+Installing nginx
+sudo opt update
+sudo opt install nginx
+This should start a nginx server on port 80
+
+Create reverse proxy
+sudo rm sudo vi /etc/nginx/nginx.conf
+sudo vi /etc/nginx/nginx.conf
+
+events {
+    # Event directives...
+}
+
+http {
+	server {
+    listen 80;
+    server_name be1.100xdevs.com;
+
+    location / {
+        proxy_pass http://localhost:8080;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+    }
+	}
+}
+sudo nginx -s reload
+
+Start the backed server
+node index.js
+
+Vist the website
+https://be1.100xdevs.com/
+
+Step 8 = Certificate Management
+Use https://certbot.eff.org/
